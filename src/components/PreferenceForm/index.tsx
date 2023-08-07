@@ -14,28 +14,34 @@ interface PredictionResponse {
   prediction_id: string
 }
 
+interface Question {
+  label: string
+  options: Array<string>
+  id: string
+}
+
 export const PreferenceForm = () => {
   const router = useRouter()
 
-  const questions = [
+  const questions: Question[] = [
     {
-      label: 'Como está se sentindo agora?',
-      options: ['Triste', 'Feliz'],
+      label: 'How are you feeling now?',
+      options: ['Sad', 'Happy'],
       id: '234',
     },
     {
-      label: 'Qual tipo de musica você você quer ouvir agora?',
-      options: ['Calmas', 'Agitadas'],
+      label: 'What kind of music do you want to hear right now?',
+      options: ['Calm', 'agitated'],
       id: '237',
     },
     {
-      label: 'O quanto você quer dançar?',
-      options: ['Pouco', 'Muito'],
+      label: 'How much do you want to dance?',
+      options: ['Little', 'Very'],
       id: '236',
     },
     {
-      label: 'Você quer ouvir musicas acusticas?',
-      options: ['Não', 'Sim'],
+      label: 'Do you want to listen to acoustic music',
+      options: ['No', 'Yes'],
       id: '235',
     },
   ]
@@ -77,7 +83,7 @@ export const PreferenceForm = () => {
       ))}
       <button className="bg-indigo-950 flex align-center gap-4 justify-center items-center font-bold text-zinc-100 rounded py-2 px-4">
         <ShuffleAngular size={24} weight="bold" />
-        Resultado
+        Result
       </button>
     </form>
   )
