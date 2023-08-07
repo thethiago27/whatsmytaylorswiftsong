@@ -10,6 +10,14 @@ export const metadata: Metadata = {
   description:
     'Find out what your Taylor Swift song is based how you are feeling right now.',
   viewport: 'width=device-width, initial-scale=1',
+  keywords: ['taylor', 'swift', 'song', 'predict', 'machine', 'learning'],
+  openGraph: {
+    images: [
+      {
+        url: 'https://i.imgur.com/rJ7uaji.jpg',
+      },
+    ],
+  },
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
