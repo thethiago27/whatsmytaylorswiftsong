@@ -1,7 +1,7 @@
 import mixpanel from 'mixpanel-browser'
 import { useEffect } from 'react'
 
-mixpanel.init(String(process.env.VITE_MIXPANEL_TOKEN))
+mixpanel.init(String(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN))
 
 const isProductionEnv: boolean = process.env.NODE_ENV === 'production'
 
