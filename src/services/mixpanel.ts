@@ -25,12 +25,3 @@ export const alias = (id: string): void => {
     mixpanel.alias(id)
   }
 }
-
-export const useTracking = (page: string): void => {
-  useEffect(() => {
-    track(`Loaded ${page}`, {
-      url: window.location.pathname,
-      referrer: document.referrer,
-    })
-  }, [page])
-}
