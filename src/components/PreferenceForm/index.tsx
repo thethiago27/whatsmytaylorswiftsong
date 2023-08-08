@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { PreferenceFormQuestion } from '@/components/PreferenceForm/PreferenceFormQuestion'
 import { FormEvent, useState } from 'react'
 import { post } from '@/services/api'
+import { identify, track } from '@/services/mixpanel'
 
 interface Answer {
   data: Array<number>
@@ -54,6 +55,11 @@ export const PreferenceForm = () => {
     const newAnswers = [...answers.data]
     newAnswers[index] = value[0]
     setAnswers({ data: newAnswers })
+
+    track('User answered a question', {
+      question: questions[index].label,
+      answer: value[0],
+    })
   }
 
   const handleSubmit = async (e: FormEvent): Promise<void> => {
@@ -65,9 +71,18 @@ export const PreferenceForm = () => {
         answers,
       )
 
+      track('User submitted the form', {
+        prediction_id: response.prediction_id,
+      })
+
+      identify(response.prediction_id)
+
       router.push(`/result/${response.prediction_id}`)
     } catch (e) {
       console.log(e)
+      track('Error on submit form', {
+        error: e,
+      })
     }
   }
 
